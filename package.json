@@ -1,0 +1,22 @@
+{
+  "name": "jtee",
+  "version": "0.1.0",
+  "description": "Run JavaScript on Phala TEE cloud.",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pkg -o dist/jtee ."
+  },
+  "author": "Wenfeng Wang",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}
