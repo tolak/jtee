@@ -117,25 +117,6 @@ mod jtee_engine {
             }
         }
 
-        #[ink(message)]
-        /// Same as prove_output except getting the code from given URL.
-        pub fn run_js_from_url(
-            &self,
-            engine: JsEngine,
-            code_url: String,
-            args: Vec<String>,
-        ) -> Result<js::JsValue, String> {
-            let response = pink::http_get!(
-                code_url,
-                alloc::vec![("User-Agent".into(), "phat-contract".into())]
-            );
-            if (response.status_code / 100) != 2 {
-                return Err("Failed to get code".into());
-            }
-            let js_code = String::from_utf8(response.body).map_err(|_| "Invalid code")?;
-            self.run_js(engine, js_code, args)
-        }
-
         pub fn seal(&self) -> String {
             String::from(format!(
                 r#"const jtee = {{
