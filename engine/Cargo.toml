@@ -29,7 +29,7 @@ lto = false                 # Enable full link-time optimization.
 
 [lib]
 name = "jtee_engine"
-path = "src/lib.rs"
+path = "lib.rs"
 
 [features]
 default = ["std"]
