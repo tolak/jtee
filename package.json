@@ -4,6 +4,9 @@
   "description": "Run JavaScript on Phala TEE cloud.",
   "main": "src/index.js",
   "bin": "src/index.js",
+  "pkg": {
+    "assets": "src/template/**/*"
+  },
   "directories": {
     "example": "examples"
   },
@@ -14,9 +17,11 @@
   "author": "Wenfeng Wang",
   "license": "MIT",
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0"
   },
   "devDependencies": {
-    "pkg": "^5.8.1"
+    "pkg": "^5.8.1",
+    "pkg-assets": "^0.1.0"
   }
 }

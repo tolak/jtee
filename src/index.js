@@ -1,11 +1,17 @@
 const { program } = require('commander');
 
+const { createProject } = require('./new');
+
 program
     .option('--chain <chain>', 'Chain name that the script deploy on', 'phala')
 
 const newProject = program
 .command('new')
-.description('Create a new jtee project.');
+.description('Create a new jtee project.')
+.argument('<string>', 'Name of the new project')
+.action(projectName => {
+    createProject(projectName);
+});
 
 const runScript = program
 .command('run')
@@ -14,9 +20,5 @@ const runScript = program
 .action(script => {
     eval(script)
 });
-
-const publishScript = program
-.command('publish')
-.description('Publish project to Phala TEE cloud');
 
 program.parse();
