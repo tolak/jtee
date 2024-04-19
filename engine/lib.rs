@@ -13,23 +13,6 @@ mod jtee_engine {
     use pink_extension::chain_extension::{signing, SigType};
     use scale::{Decode, Encode};
 
-    pub trait ToArray<T, const N: usize> {
-        fn to_array(&self) -> [T; N];
-    }
-
-    impl<T, const N: usize> ToArray<T, N> for Vec<T>
-    where
-        T: Default + Copy,
-    {
-        fn to_array(&self) -> [T; N] {
-            let mut arr = [T::default(); N];
-            for (a, v) in arr.iter_mut().zip(self.iter()) {
-                *a = *v;
-            }
-            arr
-        }
-    }
-
     #[derive(Debug, Encode, Decode)]
     #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
     pub enum JsEngine {
@@ -65,6 +48,7 @@ mod jtee_engine {
 
     #[ink(storage)]
     pub struct JteeEngine {
+        pub owner: AccountId,
         pub key: [u8; 32],
         pub account: [u8; 20],
     }
@@ -81,6 +65,7 @@ mod jtee_engine {
                 .expect("Get address of ecdsa failed");
 
             Self {
+                owner: Self::env().caller(),
                 key,
                 account: ecdsa_address,
             }
@@ -103,6 +88,8 @@ mod jtee_engine {
             js_code: String,
             args: Vec<String>,
         ) -> Result<js::JsValue, String> {
+            self.ensure_owner()?;
+
             if engine.is_sidevm() {
                 if engine.with_polyfill() {
                     Ok(js::eval_async_js(&js_code, &args))
@@ -120,12 +107,22 @@ mod jtee_engine {
         pub fn seal(&self) -> String {
             String::from(format!(
                 r#"const jtee = {{
+                    "owner": "{}",
                     "key": "0x{}",
                     "account": "0x{}",
                 }};"#,
                 hex::encode(self.key),
                 hex::encode(self.account),
+                hex::encode(&self.owner),
             ))
+        }
+
+        fn ensure_owner(&self) -> Result<(), String> {
+            if self.env().caller() == self.owner {
+                Ok(())
+            } else {
+                Err(String::from("BadOrigin"))
+            }
         }
     }
 
@@ -146,7 +143,6 @@ mod tests {
         pink_extension_runtime::mock_ext::mock_all_ext();
 
         let jtee = JteeEngine::default();
-        println!("jtee key: {}", hex::encode(jtee.key));
         println!("seal: {:?}", jtee.seal())
     }
 }
