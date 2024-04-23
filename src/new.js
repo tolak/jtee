@@ -10,16 +10,16 @@ function createProject(projectName) {
     const templatePath = path.join(__dirname, '/template');
 
     if (fs.existsSync(projectPath)) {
-      console.error(`A project with the name ${projectName} already exists.`);
-      return;
+        console.error(`A project with the name ${projectName} already exists.`);
+        return;
     }
 
     fs.copySync(templatePath, projectPath, {
         filter: (src, dest) => {
-          const excludes = ['node_modules', 'dist', '*.lock', '.git', '.DS_Store'];    
-          return !excludes.some(dir => src.includes(dir));
+            const excludes = ['node_modules', 'dist', '*.lock', '.git', '.DS_Store'];
+            return !excludes.some(dir => src.includes(dir));
         }
-      });
+    });
 
     // Set the "name" in package.json
     const packageJsonPath = path.join(projectPath, 'package.json');

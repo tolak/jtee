@@ -21,7 +21,7 @@ contract Flipper {
         flipped = !flipped;
     }
 
-    function getState() public view returns (bool){
+    function getState() public view returns (bool) {
         return flipped;
     }
 }

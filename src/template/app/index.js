@@ -5,7 +5,7 @@ async function main() {
     // The account derived inside TEE for your project which you can use to
     // submit transaction to Ethereum
     console.log('executor account:', jtee.account);
- 
+
     // ! NEVER print the key to log
     // The private key of jtee account above, never revealed to outside
     const key = jtee.key;

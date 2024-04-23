@@ -24,8 +24,8 @@ async function deployContract(uri, endpoint) {
     const accountInfo = await api.query.system.account(user.address);
     const free = accountInfo.data.free.div(new BN(1e12)).toNumber();
     if (free < 20) {
-      console.error('Not enough balance. Please transfer some tokens not less then 20 PHA to', user.address);
-      return new Error('Insufficient Balance');
+        console.error('Not enough balance. Please transfer some tokens not less then 20 PHA to', user.address);
+        return new Error('Insufficient Balance');
     }
     console.log(`Account ${user.address} has ${free} PHA.`);
 
@@ -39,7 +39,7 @@ async function deployContract(uri, endpoint) {
 
     const balance = await phatRegistry.getClusterBalance(user.address);
     console.log('Cluster Balance:', balance.total.div(new BN(1e12)).toNumber());
-  
+
     if (balance.free.div(new BN(1e12)).toNumber() < 500) {
         console.log('Transfer to cluster...');
         try {
