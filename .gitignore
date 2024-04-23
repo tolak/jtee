@@ -11,3 +11,5 @@ dist/
 
 yarn.lock
 package.lock
+
+.contract
