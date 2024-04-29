@@ -7,20 +7,21 @@
 - Create a new jtee project
 
 ```bash
-$ jtee new  <my-jtee-project>
+$ jtee new <my-jtee-project>
 ```
 
 - Deploy the engine
 
-In order to run Javascript on Phala TEE cloud, you need to deploy an Javascript engine first.
-The purpose of this engine is 1) execute the JavaScript code and 2) inject a Javascript `jtee` object
+To run Javascript on the Phala TEE cloud, you need to deploy a Javascript engine first.
+The purpose of this engine is to 1) execute the JavaScript code and 2) inject a Javascript `jtee` object
 that you can use in your script.
 
-Before run deploy command, you need to prepare a Phala blockchain account with enough balance and the node endpoint
+Before running the deploy command, you need to prepare a Phala blockchain account with enough balance and the node endpoint
 in the .env file like below in your project root directory.
 
 ```bash
 PHALA_ACCOUNT_URI="elegant capable test bar uncover comic speed cabin tattoo company cabin layer"
+# PoC6 Testnet
 PHALA_RPC=wss://poc6.phala.network/ws
 ```
 
@@ -30,15 +31,15 @@ Then, execute the following command to deploy the engine:
 $ jtee deploy
 ```
 
-You finally will get the contract ID if everything went well
+You finally will get the contract ID if everything goes well
 
 ```bash
-✅ Contract uploaded & instantiated:  0x9caa44c6686d1c1e17b4885a96faa6d055055930a248531950b0c11217cebf51
+✅ Contract uploaded & instantiated: 0x9caa44c6686d1c1e17b4885a96faa6d055055930a248531950b0c11217cebf51
 ```
 
-- Run the project on Phala TEE cloud
+- Run the project on the Phala TEE cloud
 
-By issuing following command, run the code located in `app/index.js` on Phala TEE could:
+By issuing the following command, run the code located in `app/index.js` on Phala TEE could:
 
 ```bash
 $ jtee run
@@ -58,9 +59,9 @@ See more usage, execute `jtee --help`.
 $ yarn build
 ```
 
-Binary file will be created in `dist/jtee`.
+A binary file will be created in `dist/jtee`.
 
-## Build jtee engine (Rust toolchain needed)
+## Build the engine (Rust toolchain needed)
 
 ```bash
 $ cd engine & cargo build --release
