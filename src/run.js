@@ -14,8 +14,9 @@ async function runScript(uri, endpoint, contractId, script) {
     }
     const abi = JSON.parse(fs.readFileSync(targetFile, 'utf-8'));
 
+    const keyring = new Keyring({ type: 'sr25519' });
     const client = await getClient({ transport: endpoint });
-    const provider = await KeyringPairProvider.createFromSURI(client.api, uri);
+    const provider = await KeyringPairProvider.create(client.api, keyring.addFromUri(uri));
     const balance = await client.getClusterBalance(provider.address);
     console.log(`Account ${provider.address} balance: ${JSON.stringify(balance, null, 2)}`);
 
