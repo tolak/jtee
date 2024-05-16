@@ -7,7 +7,7 @@
 - Create a new jtee project
 
 ```bash
-$ jtee new <my-jtee-project>
+$ npx jtee new <my-jtee-project>
 ```
 
 - Deploy the engine
@@ -28,7 +28,7 @@ PHALA_RPC=wss://poc6.phala.network/ws
 Then, execute the following command to deploy the engine:
 
 ```bash
-$ jtee deploy
+$ npx jtee deploy
 ```
 
 You finally will get the contract ID if everything goes well
@@ -42,24 +42,16 @@ You finally will get the contract ID if everything goes well
 By issuing the following command, run the code located in `app/index.js` on Phala TEE could:
 
 ```bash
-$ jtee run
+$ npx jtee run
 ```
 
 Or just run a specific piece of Javascript code:
 
 ```bash
-$ jtee run "console.log(\"hello world\")"
+$ npx jtee run "console.log(\"hello world\")"
 ```
 
-See more usage, execute `jtee --help`.
-
-## Build jtee from source code
-
-```bash
-$ yarn build
-```
-
-A binary file will be created in `dist/jtee`.
+See more usage, execute `npx jtee --help`.
 
 ## Build the engine (Rust toolchain needed)
 
