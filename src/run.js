@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { Keyring } = require('@polkadot/api');
 const { getClient, sendPinkQuery, KeyringPairProvider } = require('@phala/sdk');
 const BN = require('bn.js');
@@ -8,7 +9,7 @@ const BN = require('bn.js');
  * Run Javascript code with engine contract.
  */
 async function runScript(uri, endpoint, contractId, script) {
-    const targetFile = 'src/engine/jtee_engine.json'
+    const targetFile = path.join(__dirname, 'engine/jtee_engine.contract');
     if (!fs.existsSync(targetFile)) {
         return new Error(`${targetFile} not exists.`);
     }

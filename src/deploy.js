@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { signAndSend, signCertificate, OnChainRegistry, options, PinkCodePromise } = require('@phala/sdk');
 const { ApiPromise, Keyring, WsProvider } = require('@polkadot/api');
 const BN = require('bn.js');
@@ -7,7 +8,7 @@ const BN = require('bn.js');
  * Deploy smart contract to Phala network.
  */
 async function deployContract(uri, endpoint) {
-    const targetFile = 'src/engine/jtee_engine.contract'
+    const targetFile = path.join(__dirname, 'engine/jtee_engine.contract');
     if (!fs.existsSync(targetFile)) {
         return new Error(`${targetFile} not exists.`);
     }

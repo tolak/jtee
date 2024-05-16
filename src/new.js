@@ -12,7 +12,7 @@ function createProject(projectName) {
         console.error(`A project with the name ${projectName} already exists.`);
         return;
     }
-
+    fs.ensureDirSync(projectPath);
     fs.copySync(templatePath, projectPath, {
         filter: (src, dest) => {
             const excludes = ['node_modules', 'dist', '*.lock', '.git', '.DS_Store'];
