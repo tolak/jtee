@@ -1,5 +1,3 @@
 #!/usr/bin/env node
 
-const jtee = require('../src/index.js');
-console.log(`Run Jtee...`);
-jtee();
+require('../src/index.js')
