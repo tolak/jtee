@@ -1,6 +1,5 @@
 const fs = require('fs-extra');
 const path = require('path');
-require('pkg-assets')
 
 /**
  * Creates a new project with the provided project name.

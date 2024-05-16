@@ -4,14 +4,12 @@
   "description": "Run JavaScript on Phala TEE cloud.",
   "main": "src/index.js",
   "bin": "src/index.js",
-  "pkg": {
-    "assets": [
-      "src/template/**/*"
-    ]
-  },
   "directories": {
     "example": "examples"
   },
+  "engines": {
+		"node": ">=v18.14"
+	},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pkg -o dist/jtee .",
@@ -21,14 +19,39 @@
   "license": "MIT",
   "dependencies": {
     "@phala/sdk": "0.6.0-beta.19",
-    "@polkadot/api": "^10.13.1",
     "bn.js": "^5.2.1",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0"
   },
-  "devDependencies": {
-    "pkg": "^5.8.1",
-    "pkg-assets": "^0.1.0"
+  "devDependencies": {},
+  "resolutions": {
+    "@polkadot/api": "^10.11.1",
+    "@polkadot/api-augment": "^10.11.1",
+    "@polkadot/api-base": "^10.11.1",
+    "@polkadot/api-contract": "^10.11.1",
+    "@polkadot/api-derive": "^10.11.1",
+    "@polkadot/keyring": "^12.6.1",
+    "@polkadot/networks": "^12.6.1",
+    "@polkadot/phishing": "^0.22.7",
+    "@polkadot/rpc-augment": "^10.11.1",
+    "@polkadot/rpc-core": "^10.11.1",
+    "@polkadot/rpc-provider": "^10.11.1",
+    "@polkadot/types": "^10.11.1",
+    "@polkadot/types-augment": "^10.11.1",
+    "@polkadot/types-codec": "^10.11.1",
+    "@polkadot/types-create": "^10.11.1",
+    "@polkadot/types-known": "^10.11.1",
+    "@polkadot/types-support": "^10.11.1",
+    "@polkadot/util": "^12.6.1",
+    "@polkadot/util-crypto": "^12.6.1",
+    "@polkadot/wasm-crypto": "^7.3.2",
+    "@polkadot/x-bigint": "^12.6.1",
+    "@polkadot/x-fetch": "^12.6.1",
+    "@polkadot/x-global": "^12.6.1",
+    "@polkadot/x-randomvalues": "^12.6.1",
+    "@polkadot/x-textdecoder": "^12.6.1",
+    "@polkadot/x-textencoder": "^12.6.1",
+    "@polkadot/x-ws": "^12.6.1"
   }
 }
