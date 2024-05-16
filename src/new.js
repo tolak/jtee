@@ -19,14 +19,8 @@ function createProject(projectName) {
     }
 
     fs.ensureDirSync(projectPath);
-    console.log(`Trying copy files from ${templatePath} to ${projectName}}`);
     try {
-        fs.copySync(templatePath, projectPath, {
-            filter: (src, dest) => {
-                const excludes = ['node_modules', 'dist', '*.lock', '.git', '.DS_Store'];
-                return !excludes.some(dir => src.includes(dir));
-            }
-        });
+        fs.copySync(templatePath, projectPath);
     } catch (err) {
         console.error(`An error occurred while copying files from ${templatePath} to ${projectPath}`);
         console.error(err);
