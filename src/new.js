@@ -8,6 +8,11 @@ function createProject(projectName) {
     const projectPath = path.join(process.cwd(), projectName);
     const templatePath = path.join(__dirname, '/template');
 
+    if (!fs.existsSync(templatePath)) {
+        console.error(`${templatePath} couldn't be found on filesystem}`);
+        throw new Error(`${templatePath} couldn't be found on filesystem}`)
+    }
+
     if (fs.existsSync(projectPath)) {
         console.error(`A project with the name ${projectName} already exists.`);
         return;
