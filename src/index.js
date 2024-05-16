@@ -63,5 +63,3 @@ const executeScript = program
         }
         console.log(`Execution result: ${JSON.stringify(executionResult, null, 2)}`);
     });
-
-program.parse();
