@@ -2,9 +2,34 @@ require('dotenv').config();
 
 const { program } = require('commander');
 const fs = require('fs');
+const path = require('path');
+const { spawn } = require('child_process');
+
 const { createProject } = require('./new');
 const { deployContract } = require('./deploy');
 const { runScript } = require('./run');
+
+function spawnTask(command, args) {
+    return new Promise((resolve, reject) => {
+        const childProcess = spawn(command, args);
+
+        childProcess.stdout.on('data', (data) => {
+            console.log(`Task running output: ${data}`);
+        });
+
+        childProcess.stderr.on('data', (data) => {
+            console.error(`Task running error: ${data}`);
+        });
+
+        childProcess.on('close', (code) => {
+            if (code === 0) {
+                resolve();
+            } else {
+                reject(`Spawn task "${command + " " + args}" failed with exit code ${code}` + code);
+            }
+        });
+    });
+}
 
 program
     .option('--chain <chain>', 'Chain name that the script deploy on', 'phala')
@@ -53,8 +78,25 @@ const executeScript = program
         const contractId = fs.readFileSync(contractIdFile, 'utf-8');
 
         let executionResult;
-        if (script === 'undefined') {
-            // Compile and execute current project located in ./dist/index.js
+        if (script === undefined || script === null) {
+            if (!fs.existsSync(path.join(process.cwd(), 'package.json'))) {
+                console.error('Please run this command from the project root');
+                process.exit(1);
+            }
+
+            // Install dependencies and compile source code
+            await spawnTask('npm', ['i']);
+            await spawnTask('npm', ['run build']);
+
+            const targetFilePath = path.join(process.cwd(), 'dist/index.js');
+            if (!fs.existsSync(targetFilePath)) {
+                console.error(`Couldn't find the target file under dist folder`);
+                process.exit(1);
+            }
+            const script = fs.readFileSync(targetFilePath, 'utf8');
+
+            // Upload target file and run in on remote engine
+            executionResult = await runScript(uri, endpoint, contractId, script);
         } else if (script.includes('http')) {
             // TODO: execute remote Javascript code
         } else {
