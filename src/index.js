@@ -86,7 +86,7 @@ const executeScript = program
 
             // Install dependencies and compile source code
             await spawnTask('npm', ['i']);
-            await spawnTask('npm', ['run build']);
+            await spawnTask('npm', ['run', 'build']);
 
             const targetFilePath = path.join(process.cwd(), 'dist/index.js');
             if (!fs.existsSync(targetFilePath)) {
