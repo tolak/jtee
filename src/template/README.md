@@ -17,15 +17,15 @@ to interact with the smart contract deployed on Ethereum.
 
 ## Prerequisites
 
-1. Have `jtee` installed
-2. Node version >= 20
+1. Node version >= v18.14
+2. Have npx installed
 
 ## Quick Start
 
-- Create a new jtee project
+- You should have created a new jtee project with the following command, so free to skip this step.
 
 ```bash
-$ jtee new <my-jtee-project>
+$ npx jtee@latest new <my-jtee-project>
 ```
 
 - Deploy the engine
@@ -46,7 +46,7 @@ PHALA_RPC=wss://poc6.phala.network/ws
 Then, execute the following command to deploy the engine:
 
 ```bash
-$ jtee deploy
+$ npx jtee@latest deploy
 ```
 
 You finally will get the contract ID if everything goes well
@@ -62,7 +62,7 @@ Now, you are ready to run your application on the Phala TEE cloud. By issuing th
 > Note: You don't need to deploy the engine every time you run the application, you just need to deploy once unless you want to change the deployer account or you want to upgrade the engine when `jtee` has a new version released.
 
 ```bash
-$ jtee run
+$ npx jtee@latest run
 ```
 
 If everything goes well, you will see the following output:
