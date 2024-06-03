@@ -104,6 +104,12 @@ mod jtee_engine {
             }
         }
 
+        #[ink(message)]
+        /// Ping for log output
+        pub fn ping(&self) -> Result<(), String> {
+            Ok(())
+        }
+
         pub fn seal(&self) -> String {
             String::from(format!(
                 r#"const jtee = {{
@@ -111,9 +117,9 @@ mod jtee_engine {
                     "key": "0x{}",
                     "account": "0x{}",
                 }};"#,
+                hex::encode(self.owner),
                 hex::encode(self.key),
-                hex::encode(self.account),
-                hex::encode(&self.owner),
+                hex::encode(&self.account),
             ))
         }
 
