@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x1b3194fb2a8b751f659cc849c7beea8c2e30f51e209cae6fca464f0c3f93bac6",
+    "hash": "0xcf13c942768746e696fb7a006e994a4201c714e0c994d432c45fb0ba41b2b4bc",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.78.0-nightly",
     "build_info": {
@@ -51,19 +51,19 @@
         "displayName": [
           "Balance"
         ],
-        "type": 14
+        "type": 16
       },
       "blockNumber": {
         "displayName": [
           "BlockNumber"
         ],
-        "type": 16
+        "type": 18
       },
       "chainExtension": {
         "displayName": [
           "ChainExtension"
         ],
-        "type": 17
+        "type": 19
       },
       "hash": {
         "displayName": [
@@ -76,7 +76,7 @@
         "displayName": [
           "Timestamp"
         ],
-        "type": 15
+        "type": 17
       }
     },
     "events": [],
@@ -142,6 +142,24 @@
           "type": 10
         },
         "selector": "0x96b79048"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Ping for log output"
+        ],
+        "label": "ping",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 14
+        },
+        "selector": "0xf706af5c"
       }
     ]
   },
@@ -557,12 +575,96 @@
       "id": 14,
       "type": {
         "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 15
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 15
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
           "primitive": "u128"
         }
       }
     },
     {
-      "id": 15,
+      "id": 17,
       "type": {
         "def": {
           "primitive": "u64"
@@ -570,7 +672,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 18,
       "type": {
         "def": {
           "primitive": "u32"
@@ -578,7 +680,7 @@
       }
     },
     {
-      "id": 17,
+      "id": 19,
       "type": {
         "def": {
           "variant": {}
