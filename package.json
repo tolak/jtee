@@ -1,6 +1,6 @@
 {
   "name": "jtee",
-  "version": "0.1.0-beta.12",
+  "version": "0.1.0-beta.14",
   "description": "Run JavaScript on Phala TEE cloud.",
   "bin": "bin/jtee",
   "directories": {
